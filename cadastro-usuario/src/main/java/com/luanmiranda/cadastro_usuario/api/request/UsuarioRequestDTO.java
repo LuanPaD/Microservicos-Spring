@@ -12,5 +12,5 @@ public class UsuarioRequestDTO {
     private String nome;
     private String email;
     private String documento;
-    private EnderecoEntity endereco;
+    private EnderecoRequestDTO endereco;
 }
