@@ -3,6 +3,8 @@ package com.luanmiranda.loja_virtual_bff.api.request;
 import lombok.Builder;
 import lombok.Data;
 
+import java.math.BigDecimal;
+
 @Data
 @Builder
 public class CartaoRequestDTO {
@@ -10,6 +12,7 @@ public class CartaoRequestDTO {
     private String numeroCartao;
     private String mes;
     private String ano;
-    private String ccv;
+    private String cvv;
+    private BigDecimal valor;
     private EnderecoRequestDTO enderecoRequestDTO;
 }
