@@ -9,12 +9,11 @@ import org.springframework.web.bind.annotation.*;
 @FeignClient(value = "usuario-api", url = "localhost:8282")
 public interface UsuarioClient {
     @PostMapping("/user")
-    ResponseEntity<UsuarioResponseDTO> gravaDadosUsuario(@RequestBody UsuarioRequestDTO usuarioRequestDTO);
-
+    UsuarioResponseDTO gravaDadosUsuario(@RequestBody UsuarioRequestDTO usuarioRequestDTO);
 
     @GetMapping("/user")
-    ResponseEntity<UsuarioResponseDTO> buscarUsuarioPorEmail(@RequestParam("email") String email);
+    UsuarioResponseDTO buscaUsuarioPorEmail(@RequestParam("email") String email);
 
     @DeleteMapping("/user")
-    ResponseEntity<Void> excluirUsuario(@RequestParam("email") String email);
+    void deletaDadosUsuario(@RequestParam("email") String email);
 }

@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 @FeignClient(value = "pagamento-api", url = "localhost:8484")
 public interface PagamentoClient {
 
-    @PostMapping("/pagamentos")
+    @PostMapping("/pagamento")
     Boolean verificaPagamento(@RequestBody CartaoRequestDTO cartaoRequestDTO);
 }
