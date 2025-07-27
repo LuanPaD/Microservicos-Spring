@@ -62,14 +62,16 @@ public class LojaVirtualController {
 
     @Operation(summary = "Deleta usuario por email", method = "DELETE")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Usuario deletado com sucesso"),
-            @ApiResponse(responseCode = "500", description = "Erro ao deletar dados"),
+            @ApiResponse(responseCode = "202", description = "Usuário deletado com sucesso"),
+            @ApiResponse(responseCode = "404", description = "Usuário não encontrado"),
+            @ApiResponse(responseCode = "500", description = "Erro interno ao deletar usuário")
     })
     @DeleteMapping("/usuario/{email}")
     public ResponseEntity<Void> deletaUsuarioPorEmail(@PathVariable("email") String email) {
         usuarioService.deletaUsuarioPorEmail(email);
         return ResponseEntity.accepted().build();
     }
+
 
     @Operation(summary = "Realiza compra de produto", method = "POST")
     @ApiResponses(value = {

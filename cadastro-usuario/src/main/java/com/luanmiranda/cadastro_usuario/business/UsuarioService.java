@@ -34,7 +34,16 @@ public class UsuarioService {
         );
     }
 
-    public void excluirUsuario(String email) {
-        usuarioRepository.deleteByEmail(email);
+    public boolean excluirUsuario(String email) {
+        try {
+            if (usuarioRepository.existsByEmail(email)) {
+                usuarioRepository.deleteByEmail(email);
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao excluir usuário", e);
+        }
     }
 }

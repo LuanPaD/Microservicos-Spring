@@ -4,6 +4,7 @@ import com.luanmiranda.cadastro_usuario.api.request.UsuarioRequestDTO;
 import com.luanmiranda.cadastro_usuario.api.response.UsuarioResponseDTO;
 import com.luanmiranda.cadastro_usuario.business.UsuarioService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -29,9 +30,19 @@ public class UsuarioController {
     }
 
     @DeleteMapping
-    public ResponseEntity<Void> excluirUsuario(@RequestParam("email") String email) {
-        usuarioService.excluirUsuario(email);
-        return ResponseEntity.accepted().build();
+    public ResponseEntity<String> excluirUsuario(@RequestParam("email") String email) {
+        boolean usuarioExcluido = usuarioService.excluirUsuario(email);
+
+        if (!usuarioExcluido) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body("Usuário com email " + email + " não encontrado.");
+        }
+
+        return ResponseEntity
+                .status(HttpStatus.ACCEPTED)
+                .body("Usuário com email " + email + " excluído com sucesso.");
     }
+
 
 }
